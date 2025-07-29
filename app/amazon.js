@@ -47,7 +47,7 @@ let html = `
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart added-to-cart-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -72,6 +72,16 @@ document.querySelectorAll('.add-to-cart-button').forEach(button => {
     const selectedValue = Number(selected)
    
     addTocartFunc(productId, selectedValue);
+
+   const addedCheck = document.querySelector(`.added-to-cart-${productId}`);
+   addedCheck.classList.add('show');
+
+    let timeOutId = setTimeout(() => {
+      addedCheck.classList.remove('show')
+    }, 3000);
+
+
+
   })
 })
 
