@@ -1,4 +1,6 @@
 import { products } from "../data/products.js";
+import {cart, addTocartFunc} from '../app/cart.js'
+
 
 function generateAmazonProducts() {
    let frontPageHtml = '';
@@ -50,7 +52,7 @@ let html = `
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary" data-product-id = ${product.id}>
             Add to Cart
           </button>
         </div>
@@ -60,6 +62,16 @@ let html = `
 frontPageHtml+= html
 })
 document.querySelector('.products-grid').innerHTML = frontPageHtml;
+
+document.querySelectorAll('.add-to-cart-button').forEach(button => {
+  button.addEventListener('click', () => {
+     const {productId} = button.dataset;
+     addTocartFunc(productId);
+  })
+})
+
+
+
 }
 
 generateAmazonProducts();
