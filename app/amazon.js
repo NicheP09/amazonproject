@@ -1,5 +1,5 @@
 import { products } from "../data/products.js";
-import {cart, addTocartFunc} from '../app/cart.js'
+import {cart, addTocartFunc, updatingCartQuantity} from '../app/cart.js'
 
 
 function generateAmazonProducts() {
@@ -79,8 +79,7 @@ document.querySelectorAll('.add-to-cart-button').forEach(button => {
     let timeOutId = setTimeout(() => {
       addedCheck.classList.remove('show')
     }, 3000);
-
-
+   document.querySelector('.cart-quantity').innerHTML = updatingCartQuantity()
 
   })
 })

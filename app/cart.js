@@ -15,14 +15,12 @@ function matchingCheck(productId) {
 
 export function addTocartFunc(productId, selectedValue) {
 
-   console.log(selectedValue)
   const matchingItem = matchingCheck(productId)
-  
- if (matchingItem && selectedValue) {
-    matchingItem.quantity = selectedValue;
-  }else if (matchingItem) {
+  if (matchingItem) {
     matchingItem.quantity += 1;
-  } else {
+  }else if (matchingItem && selectedValue) {
+    matchingItem.quantity = selectedValue;
+  }  else {
     if (selectedValue){
       cart.push({
         productId,
@@ -36,5 +34,13 @@ export function addTocartFunc(productId, selectedValue) {
     )
   }
   }
-
 }
+
+export function updatingCartQuantity() {
+  let total = 0;
+  cart.forEach(item => {
+    total += item.quantity
+  })
+  return total;
+}
+
