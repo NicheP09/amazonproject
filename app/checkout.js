@@ -61,7 +61,7 @@ function CartCheckOut() {
 
               <div class="delivery-options">
               
-               ${deliveryOptionFunc(item, matchingProduct)}
+               ${deliveryOptionFunc(matchingProduct, item)}
               </div>
             </div>
           </div>
@@ -106,12 +106,14 @@ document.querySelectorAll('.save-update').forEach(save => {
 
 }
 
-function deliveryOptionFunc(item, matchingProduct) {
- 
+function deliveryOptionFunc(matchingProduct, item) {
+  
+  
   let deliveryHtml = '';
   deliveryOption.forEach(option => {
- 
+
     const priceString = option.priceCents === 0 ? 'FREE' : `$${option.priceCents/ 100} -`;
+    const isChecked = item.deliveryId === option.id;
 
     
     deliveryHtml += `
@@ -119,9 +121,9 @@ function deliveryOptionFunc(item, matchingProduct) {
                   Choose a delivery option:
                 </div>
               <div class="delivery-option">
-                  <input type="radio" checked
+                  <input type="radio" ${isChecked ? "checked" : ''}
                     class="delivery-option-input"
-                    name="delivery-option-1">
+                    name="delivery-option-${matchingProduct.id}">
                   <div>
                     <div class="delivery-option-date">
                       Tuesday, June 21
