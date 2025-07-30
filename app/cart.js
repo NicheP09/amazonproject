@@ -11,7 +11,7 @@ function saveToStorage(){
   localStorage.setItem('cart', JSON.stringify(cart))
 }
 
-function matchingCheck(productId) {
+export function matchingCheck(productId) {
  
   let matching;
   cart.forEach(cartItem => {
@@ -53,6 +53,7 @@ export function updatingCartQuantity() {
   cart.forEach(item => {
     total += item.quantity
   })
+  saveToStorage()
 return total;
 }
 

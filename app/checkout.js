@@ -1,4 +1,4 @@
-import { cart, updatingCartQuantity, removeFromCart } from "./cart.js";
+import { cart, updatingCartQuantity, removeFromCart,matchingCheck } from "./cart.js";
 import { products } from "../data/products.js";
 
 
@@ -41,11 +41,17 @@ function CartCheckOut() {
                 </div>
                 <div class="product-quantity">
                   <span>
-                    Quantity: <span class="quantity-label">${item.quantity}</span>
+                    Quantity: <span class="quantity-label quantity-label-${matchingProduct.id}">${item.quantity}</span>
                   </span>
-                  <span class="update-quantity-link link-primary">
+                  <span class="update-quantity-link   update-quantity-link-${matchingProduct.id} link-primary" data-product-id= "${matchingProduct.id}">
                     Update
                   </span>
+
+                  <span class="input-save-con">
+                  <input class="update-input update-input-${matchingProduct.id}" type ="text">
+                  <button class="save-update save-update-${matchingProduct.id} link-primary" data-product-id= "${matchingProduct.id}">Save</button>
+                  </span>
+
                   <span class="delete-quantity-link delete-quantity-link-${matchingProduct.id} link-primary" data-product-id = "${matchingProduct.id}">
                     Delete
                   </span>
@@ -114,6 +120,27 @@ document.querySelectorAll('.delete-quantity-link').forEach(deleteClick => {
   })
 })
 
+document.querySelectorAll('.update-quantity-link').forEach(update => {
+  update.addEventListener('click', ()=> {
+    const {productId} = update.dataset;
+    const container = document.querySelector(`.cart-item-container-${productId}`);
+    container.classList.add('is-editing')
+  })
+})
+document.querySelectorAll('.save-update').forEach(save => {
+  save.addEventListener('click', () => {
+     const {productId} = save.dataset;
+    const updateInput = document.querySelector(`.update-input-${productId}`).value;
+    const updatedInput = Number(updateInput);
+    let matching = matchingCheck(productId);
+    matching.quantity = updatedInput;
+     const container = document.querySelector(`.cart-item-container-${productId}`);
+    container.classList.remove('is-editing');
+    document.querySelector(`.quantity-label-${productId}`).innerHTML = updateInput;
+    updatingCheckoutQuantity()
+
+  })
+})
 
 
 }
