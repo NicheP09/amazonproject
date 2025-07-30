@@ -2,6 +2,7 @@ import { cart, updatingCartQuantity, removeFromCart,matchingCheck, updateDeliver
 import { products } from "../data/products.js";
 import { deliveryOption } from "../data/deliveryOption.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+import {paymentSummary} from "./orderSummary.js";
 
 
 function updatingCheckoutQuantity() {
@@ -93,6 +94,7 @@ document.querySelectorAll('.delete-quantity-link').forEach(deleteClick => {
     const container = document.querySelector(`.cart-item-container-${productId}`);
     container.remove();
     updatingCheckoutQuantity()
+    paymentSummary()
   })
 })
 
@@ -114,7 +116,7 @@ document.querySelectorAll('.save-update').forEach(save => {
     container.classList.remove('is-editing');
     document.querySelector(`.quantity-label-${productId}`).innerHTML = updateInput;
     updatingCheckoutQuantity()
-
+    paymentSummary()
   })
 })
 
@@ -168,8 +170,10 @@ document.querySelectorAll('.delivery-option').forEach(option => {
    const {productId, optionId} = option.dataset;
   updateDeliveryFunc(productId, optionId);
   CartCheckOut()
+  paymentSummary()
   })
 })
   
 
 
+paymentSummary()

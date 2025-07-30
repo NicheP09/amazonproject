@@ -1,10 +1,10 @@
 export let cart = JSON.parse(localStorage.getItem('cart')) || [{
-  productId: "8b5a2ee1-6055-422a-a666-b34ba28b76d4",
-  quantity: 3,
+  productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+  quantity: 2,
   deliveryId: '1',
 }, {
-   productId: "3fdfe8d6-9a15-4979-b459-585b0d0545b9",
-  quantity: 2,
+   productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+  quantity: 1,
   deliveryId: '2',
 }];
 
