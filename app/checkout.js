@@ -26,13 +26,22 @@ function CartCheckOut() {
     })
 
     const deliveryOptionId = item.deliveryId;
-  
+    let deliveryDays;
+    deliveryOption.forEach(delivery => {
+      if (delivery.id === deliveryOptionId){
+        deliveryDays = delivery.deliveryDays
+      }
+    })
+    
+  const todayDate = dayjs();
+  const deliveryDay = todayDate.add(deliveryDays, 'days')
+  const dateString = deliveryDay.format('ddd, MMMM D YYYY')
 
     checkOutHtml += `
     
      <div class="cart-item-container cart-item-container-${matchingProduct.id}">
             <div class="delivery-date delivery-date-${matchingProduct.id}">
-              Delivery date: Tuesday, June 21
+             ${dateString}
             </div>
 
             <div class="cart-item-details-grid">
@@ -124,7 +133,7 @@ function deliveryOptionFunc(matchingProduct, item) {
 
      const todayDate = dayjs();
   const deliveryDay = todayDate.add(option.deliveryDays, 'days')
-  const dateString = deliveryDay.format('ddd MMMM D YYYY')
+  const dateString = deliveryDay.format('ddd, MMMM D YYYY')
 
     const priceString = option.priceCents === 0 ? 'FREE' : `$${option.priceCents/ 100} -`;
     const isChecked = option.id ===  item.deliveryId;
