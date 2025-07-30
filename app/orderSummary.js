@@ -5,7 +5,7 @@ import { products } from "../data/products.js";
 
  
 
-export function paymentSummary() {
+export function orderSummary() {
   const totalItem =updatingCartQuantity()
   let productPrice = 0;
   let productPriceCents = 0;
