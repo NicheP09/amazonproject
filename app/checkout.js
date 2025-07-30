@@ -1,6 +1,7 @@
 import { cart, updatingCartQuantity, removeFromCart,matchingCheck } from "./cart.js";
 import { products } from "../data/products.js";
 import { deliveryOption } from "../data/deliveryOption.js";
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 
 function updatingCheckoutQuantity() {
@@ -108,9 +109,14 @@ document.querySelectorAll('.save-update').forEach(save => {
 
 function deliveryOptionFunc(matchingProduct, item) {
   
+ 
   
   let deliveryHtml = '';
   deliveryOption.forEach(option => {
+
+     const todayDate = dayjs();
+  const deliveryDay = todayDate.add(option.deliveryDays, 'days')
+  const dateString = deliveryDay.format('ddd MMMM D YYYY')
 
     const priceString = option.priceCents === 0 ? 'FREE' : `$${option.priceCents/ 100} -`;
     const isChecked = item.deliveryId === option.id;
@@ -126,7 +132,7 @@ function deliveryOptionFunc(matchingProduct, item) {
                     name="delivery-option-${matchingProduct.id}">
                   <div>
                     <div class="delivery-option-date">
-                      Tuesday, June 21
+                     ${dateString};
                     </div>
                     <div class="delivery-option-price">
                       ${priceString} Shipping
