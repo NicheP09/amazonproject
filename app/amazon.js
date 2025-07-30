@@ -79,12 +79,13 @@ document.querySelectorAll('.add-to-cart-button').forEach(button => {
     let timeOutId = setTimeout(() => {
       addedCheck.classList.remove('show')
     }, 3000);
-   
+    document.querySelector('.cart-quantity').innerHTML = updatingCartQuantity()
 
   })
 })
 
 
+ document.querySelector('.cart-quantity').innerHTML = updatingCartQuantity();
 
 }
 
