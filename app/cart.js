@@ -1,5 +1,15 @@
-export let cart =  [];
+export let cart = JSON.parse(localStorage.getItem('cart')) || [{
+  productId: "8b5a2ee1-6055-422a-a666-b34ba28b76d4",
+  quantity: 3,
+}, {
+   productId: "3fdfe8d6-9a15-4979-b459-585b0d0545b9",
+  quantity: 2,
+}];
 
+
+function saveToStorage(){
+  localStorage.setItem('cart', JSON.stringify(cart))
+}
 
 function matchingCheck(productId) {
  
@@ -34,6 +44,8 @@ export function addTocartFunc(productId, selectedValue) {
     )
   }
   }
+  updatingCartQuantity()
+  saveToStorage()
 }
 
 export function updatingCartQuantity() {
@@ -41,6 +53,7 @@ export function updatingCartQuantity() {
   cart.forEach(item => {
     total += item.quantity
   })
-  return total;
+ document.querySelector('.cart-quantity').innerHTML = total
 }
 
+updatingCartQuantity()
