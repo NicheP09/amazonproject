@@ -30,7 +30,7 @@ getRating() {
 
    constructor(productDetails) {
     super(productDetails);
-    this.productDetails = productDetails.sizeChartLink;
+    this.sizeChartLink = productDetails.sizeChartLink;
    }
    extraInfoDisplay() {
     return `<a href="${this.sizeChartLink}" target="_blank" >SizeChart</a>`
@@ -95,7 +95,7 @@ console.log(myAppliance)
 
 
 
-
+ 
    
 export const products = [
   {
@@ -142,7 +142,7 @@ export const products = [
       "mens"
     ],
     type: "clothing",
-    sizeChartLink: "images/clothing-size-chart.png"
+    sizeChartLink: "images/clothing-size.jpg"
   },
   {
     id: "54e0eccd-8f36-462b-b68a-8182611d9add",
@@ -152,9 +152,7 @@ export const products = [
       stars: 5,
       count: 2197
     },
-     warrantyLink:"images/clothing-size-chart.png",
-    instructionsLink: "images/clothing-size-chart.png",
-    type: "appliances",
+    
     priceCents: 1899,
     keywords: [
       "toaster",
@@ -269,7 +267,7 @@ export const products = [
       "apparel"
     ],
     type: "clothing",
-    sizeChartLink: "images/clothing-size-chart.png"
+    sizeChartLink: "images/clothing-size.jpg"
   },
   {
     id: "aad29d11-ea98-41ee-9285-b916638cac4a",
@@ -412,7 +410,7 @@ export const products = [
       "apparel"
     ],
     type: "clothing",
-    sizeChartLink: "images/clothing-size-chart.png"
+    sizeChartLink:  "images/clothing-size.jpg"
   },
   {
     id: "a93a101d-79ef-4cf3-a6cf-6dbe532a1b4a",
@@ -461,7 +459,7 @@ export const products = [
       "mens"
     ],
     type: "clothing",
-    sizeChartLink: "images/clothing-size-chart.png"
+    sizeChartLink: "images/clothing-size.jpg"
   },
   {
     id: "b86ddc8b-3501-4b17-9889-a3bad6fb585f",
@@ -760,11 +758,21 @@ export const products = [
     ]
   }
 ].map(productDetails => {
-  
-    if (productDetails.type ===  "appliances"){
-      return new Appliance(productDetails)
-    }
-  else if(productDetails.type === "clothing") {
+ let appli;
+  productDetails.keywords.forEach(keyword => {
+    if(keyword === 'appliances' ) {
+      
+      appli = productDetails;
+    } 
+  })
+  if (appli) {
+    appli.instructionsLink = "/images/ins.jpeg";
+    appli.warrantyLink = "/images/wa.png"
+    return new Appliance(appli)
+  }
+ 
+
+   if(productDetails.type === "clothing") {
     return new Clothing(productDetails)
   }
   return new Product(productDetails)
