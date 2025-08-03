@@ -20,14 +20,14 @@ let html = `
 
           <div class="product-rating-container">
             <img class="product-rating-stars"
-              src="images/ratings/rating-${product.rating.stars * 10}.png">
+              src="images/ratings/rating-${product.getRating()}">
             <div class="product-rating-count link-primary">
              ${product.rating.count}
             </div>
           </div>
 
           <div class="product-price">
-           $${product.priceCents / 100}
+          ${product.getPrice()}
           </div>
 
           <div class="product-quantity-container">
@@ -45,6 +45,7 @@ let html = `
             </select>
           </div>
 
+          ${product. extraInfoDisplay()}
           <div class="product-spacer"></div>
 
           <div class="added-to-cart added-to-cart-${product.id}">
