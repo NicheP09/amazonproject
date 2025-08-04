@@ -72,24 +72,6 @@ const tshirt = new Clothing({
 
   }
 
-  const myAppliance = new Appliance( {
-    id: "54e0eccd-8f36-462b-b68a-8182611d9add",
-    image: "images/products/black-2-slot-toaster.jpg",
-    name: "2 Slot Toaster - Black",
-    rating: {
-      stars: 5,
-      count: 2197
-    },
-    warrantyLink:"hey",
-    instructionsLink: "hey",
-    priceCents: 1899,
-    keywords: [
-      "toaster",
-      "kitchen",
-      "appliances"
-    ]
-  });
-console.log(myAppliance)
 
 
 

@@ -1,4 +1,4 @@
-import { cart, updatingCartQuantity, removeFromCart,matchingCheck, updateDeliveryFunc } from "./cart.js";
+import { cart, updatingCartQuantity, removeFromCart,matchingCheck, updateDeliveryFunc } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { deliveryOption } from "../data/deliveryOption.js";
 import { orderSummary } from "./orderSummary.js";

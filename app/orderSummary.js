@@ -1,6 +1,7 @@
-import { cart, updatingCartQuantity, matchingCheck } from "./cart.js";
+import { cart, updatingCartQuantity, matchingCheck } from "../data/cart.js";
 import { deliveryOption } from "../data/deliveryOption.js";
 import { products } from "../data/products.js";
+import { orderFun, orders } from "../data/order.js";
 
 
  
@@ -38,7 +39,6 @@ const totalBeforeTax = (productPriceCents + totalShippingCostCents)/100;
 const estimatedTax = (totalBeforeTax * 0.1).toFixed(2);
 const orderTotal = ((productPriceCents + totalShippingCostCents)/100 + (totalBeforeTax * 0.1)).toFixed(2)
 
-console.log(productPriceCents, totalShippingCostCents, totalBeforeTax, estimatedTax, orderTotal, totalItemCost);
 
 
 const paymentSummaryHtml = `
@@ -77,4 +77,30 @@ const paymentSummaryHtml = `
 
 `
 document.querySelector('.payment-summary').innerHTML = paymentSummaryHtml;
+
+document.querySelector('.place-order-button').addEventListener('click', async() => {
+  try{
+  const response = await fetch('https://supersimplebackend.dev/orders', {
+    method: 'POST',
+    headers: {
+      'Content-Type' : 'application/json'
+    },
+    body: JSON.stringify({
+      cart : cart
+    })
+  })
+
+  const order = await response.json();
+  orderFun(order);
+ 
+ 
+  } catch(error) {
+    console.log("unexpected error. Try again later")
+  }
+
+
+   window.location.href = "orders.html"
+})
 }
+
+
