@@ -1,5 +1,5 @@
 import { products } from "../data/products.js";
-import {cart, addTocartFunc, updatingCartQuantity} from '../app/cart.js'
+import {cart, addTocartFunc, updatingCartQuantity} from '../data/cart.js'
 
 
 function generateAmazonProducts() {
